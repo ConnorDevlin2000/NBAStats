@@ -38,12 +38,12 @@ public class Game {
     @DatabaseField
     private Integer rebAway;
 
-
-
     public Game() {
     }
 
-    public Game(int gameID, int homeTeamID, int visitorTeamID, int season, int ptsHome, int fgPctHome, int ftPctHome, int fg3PctHome, int astHome, int rebHome, int ptsAway, int fgPctAway, int ftPctAway, int fg3PctAway, int astAway, int rebAway) {
+    public Game(int gameID, int homeTeamID, int visitorTeamID, int season, int ptsHome, int fgPctHome, int ftPctHome,
+            int fg3PctHome, int astHome, int rebHome, int ptsAway, int fgPctAway, int ftPctAway, int fg3PctAway,
+            int astAway, int rebAway) {
         this.gameID = gameID;
         this.homeTeamID = homeTeamID;
         this.visitorTeamID = visitorTeamID;
@@ -73,8 +73,10 @@ public class Game {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Game g = (Game) o;
         return gameID.equals(g.gameID);
     }
