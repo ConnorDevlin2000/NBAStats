@@ -16,11 +16,11 @@ public class Game {
     @DatabaseField
     private Integer ptsHome;
     @DatabaseField
-    private Integer fgPctHome;
+    private Double fgPctHome;
     @DatabaseField
-    private Integer ftPctHome;
+    private Double ftPctHome;
     @DatabaseField
-    private Integer fg3PctHome;
+    private Double fg3PctHome;
     @DatabaseField
     private Integer astHome;
     @DatabaseField
@@ -28,11 +28,11 @@ public class Game {
     @DatabaseField
     private Integer ptsAway;
     @DatabaseField
-    private Integer fgPctAway;
+    private Double fgPctAway;
     @DatabaseField
-    private Integer ftPctAway;
+    private Double ftPctAway;
     @DatabaseField
-    private Integer fg3PctAway;
+    private Double fg3PctAway;
     @DatabaseField
     private Integer astAway;
     @DatabaseField
@@ -40,10 +40,8 @@ public class Game {
 
     public Game() {
     }
-
-    public Game(int gameID, int homeTeamID, int visitorTeamID, int season, int ptsHome, int fgPctHome, int ftPctHome,
-            int fg3PctHome, int astHome, int rebHome, int ptsAway, int fgPctAway, int ftPctAway, int fg3PctAway,
-            int astAway, int rebAway) {
+    
+    public Game(int gameID, int homeTeamID, int visitorTeamID, int season, int ptsHome, double fgPctHome, double ftPctHome, double fg3PctHome, int astHome, int rebHome, int ptsAway, double fgPctAway, double ftPctAway, double fg3PctAway, int astAway, int rebAway) {
         this.gameID = gameID;
         this.homeTeamID = homeTeamID;
         this.visitorTeamID = visitorTeamID;
@@ -60,10 +58,6 @@ public class Game {
         this.fg3PctAway = fg3PctAway;
         this.astAway = astAway;
         this.rebAway = rebAway;
-    }
-
-    public Integer getGameID() {
-        return gameID;
     }
 
     @Override
@@ -86,3 +80,4 @@ public class Game {
         return Objects.hash(gameID);
     }
 }
+
