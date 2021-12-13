@@ -1,0 +1,16 @@
+#set( $title = "Search jobs" )
+#parse("public/top.vm")
+
+<h2>Search jobs</h2>
+<legend>Search jobs:</legend>
+<form action="/search" method="post" >
+    <fieldset>
+        <div>
+            <label for="keywords">Company name, job title or domain: </label>
+            <input type="text" name="keywords" id="keywords">
+        </div>
+        <br/>
+        <input type="submit" value="Search" id="submitSearch" />
+    </fieldset>
+</form>
+

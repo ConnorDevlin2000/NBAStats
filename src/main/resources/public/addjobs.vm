@@ -1,0 +1,76 @@
+#set( $title = "Add a job" )
+#parse("public/top.vm")
+
+<h2>Add a new job</h2>
+<legend>Add a job:</legend>
+<form action="/jobs" method="post" >
+    <fieldset>
+        <div>
+            <label for="sector">Title: </label>
+            <input type="text" name="title" id="title" placeholder="Required">
+        </div>
+        <br/>
+        <div>
+            <label for="employer">Employer: </label>
+            #if ($employers)
+                <select name = "employer" id="employer">
+                    #foreach($em in $employers)
+                        <option value = $em.name>$em.name</option>
+                    #end
+                </select>
+            #end
+        </div>
+        <br/>
+        <div>
+            <label for="sector">Date posted: </label>
+            <input type="date" name="datePosted" id="datePosted">
+        </div>
+        <br />
+        <div>
+            <label for="sector">Deadline: </label>
+            <input type="date" name="deadline" id="deadline">
+        </div>
+        <br />
+        <div>
+            <label for="sector">Domain: </label>
+            <input type="text" name="domain" id="domain">
+        </div>
+        <br />
+        <div>
+            <label for="sector">Location: </label>
+            <input type="text" name="location" id="location">
+        </div>
+        <br />
+        <div>
+            <label for="fulltime">Full-time: </label>
+            <select name = "fulltime" id="fulltime">
+                <option value = "true">Yes</option>
+                <option value = "false">No</option>
+            </select>
+        </div>
+        <br />
+        <div>
+            <label for="salaryBased">Salary/Hourly: </label>
+            <select name = "salaryBased" id="salaryBased">
+                <option value = "true">Salary</option>
+                <option value = "false">Hourly</option>
+            </select>
+        </div>
+        <br/>
+        <div>
+            <label for="payAmount">Payment: </label>
+            <input type="number" id="payAmount" name="payAmount" min="0" max="10000000" value="100000">
+        </div>
+        <br />
+        <div>
+            <label for="requirements">Requirements: </label>
+            <textarea row="10" cols="40" name="requirements" id="requirements"></textarea>
+        </div>
+        <br />
+
+
+        <input type="submit" value="Add" id="submitAddJob" />
+    </fieldset>
+</form>
+
+#parse("public/bottom.vm")
