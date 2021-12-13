@@ -43,7 +43,7 @@ public class Game {
     public Game() {
     }
 
-    public Game(int gameID, int homeTeamID, int visitorTeamID, int season, int ptsHome, int fgPctHome, int ftPctHome, int fg3PctHome, int astHome, int rebHome, int ptsAway, int fgPctAway, int ftPctAway, int fg3PctAway, int astAway int rebAway) {
+    public Game(int gameID, int homeTeamID, int visitorTeamID, int season, int ptsHome, int fgPctHome, int ftPctHome, int fg3PctHome, int astHome, int rebHome, int ptsAway, int fgPctAway, int ftPctAway, int fg3PctAway, int astAway, int rebAway) {
         this.gameID = gameID;
         this.homeTeamID = homeTeamID;
         this.visitorTeamID = visitorTeamID;
@@ -54,12 +54,12 @@ public class Game {
         this.fg3PctHome = fg3PctHome;
         this.astHome = astHome;
         this.rebHome = rebHome;
-        this.ptsAway = ptsHome;
-        this.fgPctAway = fgPctHome;
-        this.ftPctAway = ftPctHome;
-        this.fg3PctAway = fg3PctHome;
-        this.astAway = astHome;
-        this.rebAway = rebHome;
+        this.ptsAway = ptsAway;
+        this.fgPctAway = fgPctAway;
+        this.ftPctAway = ftPctAway;
+        this.fg3PctAway = fg3PctAway;
+        this.astAway = astAway;
+        this.rebAway = rebAway;
     }
 
     public Integer getGameID() {
