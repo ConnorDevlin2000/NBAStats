@@ -50,6 +50,10 @@ public class GameStat {
     @DatabaseField
     private Integer plusminus;
 
+    public GameStat(){
+
+    }
+
     public GameStat(Game gameID, Team teamID, Player playerId, int fgm, int fga, double fg_pct, int fg3m, int fg3a,
             double fg3_pct, int ftm, int fta, double ft_pct, int oreb, int dreb, int reb, int ast, int stl, int blk,
             int pf, int pts, int plusminus) {

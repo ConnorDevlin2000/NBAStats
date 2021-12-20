@@ -27,23 +27,13 @@ public class Main {
         final String URI = "jdbc:sqlite:./JBApp.db";
         ConnectionSource connectionSource = new JdbcConnectionSource(URI);
         TableUtils.createTableIfNotExists(connectionSource, Game.class);
-        Dao<Game,Integer> gameDao = DaoManager.createDao(connectionSource, Game.class);
-//        Game g = new Game(1, 1, 2, 2020, 100, 50.2, 42.9, 12.3, 14, 12, 130, 10.2, 19.2, 29.1, 32, 12);
-//        gameDao.create(g);
-        return gameDao;
+        return DaoManager.createDao(connectionSource, Game.class);
     }
 
     private static Dao getPlayerORMLiteDao() throws SQLException {
-        getTeamORMLiteDao();
         final String URI = "jdbc:sqlite:./JBApp.db";
         ConnectionSource connectionSource = new JdbcConnectionSource(URI);
         TableUtils.createTableIfNotExists(connectionSource, Player.class);
-        Dao<Team,Integer> teamDao = DaoManager.createDao(connectionSource, Team.class);
-        Team t = new Team(12, 1950, 2021, "NYK", "Ultra Bums", 1950, "New York", "MSG", 1000);
-        teamDao.create(t);
-        Dao<Player,Integer> playerDao = DaoManager.createDao(connectionSource, Player.class);
-        Player p = new Player("Dilt Chamberlain", t, 11, 2020);
-        playerDao.create(p);
         return DaoManager.createDao(connectionSource, Player.class);
     }
 
@@ -66,7 +56,6 @@ public class Main {
         final int PORT_NUM = 7000;
         Spark.port(PORT_NUM);
 
-
         Spark.get("/", (req, res) -> {
             List<Game> ls = getGameORMLiteDao().queryForAll();
             Map<String, Object> model = new HashMap<String, Object>();
@@ -86,6 +75,13 @@ public class Main {
             Map<String, Object> model = new HashMap<String, Object>();
             model.put("teams", ls);
             return new ModelAndView(model, "public/teams.vm");
+        }, new VelocityTemplateEngine());
+
+        Spark.get("/gamestats", (req, res) -> {
+            List<GameStat> ls = getGameStatORMLiteDao().queryForAll();
+            Map<String, Object> model = new HashMap<String, Object>();
+            model.put("gamestats", ls);
+            return new ModelAndView(model, "public/gamestats.vm");
         }, new VelocityTemplateEngine());
 
     }

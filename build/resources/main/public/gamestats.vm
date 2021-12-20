@@ -1,0 +1,20 @@
+#set( $title = "Show game stats" )
+<body>
+    #if ($gamestats)
+    <h1>List of all game stats:</h1>
+    <div>
+        <ol>
+        <p>
+            #foreach($gs in $gamestats)
+                <li>
+                    <i>$gs.player.playerName</i>
+                    <i>$gs.team.nickname</i>
+                    <i>$gs.reb</i>
+                </li>
+            #end
+            </p>
+
+        </ol>
+    </div>
+    #end
+</body>

@@ -43,12 +43,12 @@ public class Game {
     public Game() {
     }
 
-    public Game(int gameID, Team homeTeamID, Team visitorTeamID, int season, int ptsHome, double fgPctHome,
+    public Game(int gameID, Team homeTeam, Team visitorTeam, int season, int ptsHome, double fgPctHome,
             double ftPctHome, double fg3PctHome, int astHome, int rebHome, int ptsAway, double fgPctAway,
             double ftPctAway, double fg3PctAway, int astAway, int rebAway) {
         this.gameID = gameID;
-        this.homeTeam = homeTeamID;
-        this.visitorTeam = visitorTeamID;
+        this.homeTeam = homeTeam;
+        this.visitorTeam = visitorTeam;
         this.season = season;
         this.ptsHome = ptsHome;
         this.fgPctHome = fgPctHome;
@@ -68,11 +68,11 @@ public class Game {
         return gameID;
     }
 
-    public Team getHomeTeamID() {
+    public Team getHomeTeam() {
         return homeTeam;
     }
 
-    public Team getVisitorTeamID() {
+    public Team getVisitorTeam() {
         return visitorTeam;
     }
 

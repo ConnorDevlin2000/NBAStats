@@ -8,6 +8,8 @@
             #foreach($g in $games)
                 <li>
                     <i>$g.gameID</i>
+                    <i>$g.homeTeam.nickname</i>
+                    <i>$g.visitorTeam.nickname</i>
                 </li>
             #end
             </p>
