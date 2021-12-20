@@ -62,8 +62,68 @@ public class Game {
         this.rebAway = rebAway;
     }
 
+    public Integer getGameID() {
+        return gameID;
+    }
+
+    public Integer getHomeTeamID() {
+        return homeTeamID;
+    }
+
+    public Integer getVisitorTeamID() {
+        return visitorTeamID;
+    }
+
     public Integer getSeason() {
         return season;
+    }
+
+    public Integer getPtsHome() {
+        return ptsHome;
+    }
+
+    public Double getFgPctHome() {
+        return fgPctHome;
+    }
+
+    public Double getFtPctHome() {
+        return ftPctHome;
+    }
+
+    public Double getFg3PctHome() {
+        return fg3PctHome;
+    }
+
+    public Integer getAstHome() {
+        return astHome;
+    }
+
+    public Integer getRebHome() {
+        return rebHome;
+    }
+
+    public Integer getPtsAway() {
+        return ptsAway;
+    }
+
+    public Double getFgPctAway() {
+        return fgPctAway;
+    }
+
+    public Double getFtPctAway() {
+        return ftPctAway;
+    }
+
+    public Double getFg3PctAway() {
+        return fg3PctAway;
+    }
+
+    public Integer getAstAway() {
+        return astAway;
+    }
+
+    public Integer getRebAway() {
+        return rebAway;
     }
 
     @Override

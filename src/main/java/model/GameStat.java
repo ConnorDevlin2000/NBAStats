@@ -73,6 +73,90 @@ public class GameStat {
         this.plusminus = plusminus;
     }
 
+    public Integer getGameID() {
+        return gameID;
+    }
+
+    public Integer getTeamID() {
+        return teamID;
+    }
+
+    public Integer getPlayerID() {
+        return playerID;
+    }
+
+    public Integer getFgm() {
+        return fgm;
+    }
+
+    public Integer getFga() {
+        return fga;
+    }
+
+    public Double getFg_pct() {
+        return fg_pct;
+    }
+
+    public Integer getFg3m() {
+        return fg3m;
+    }
+
+    public Integer getFg3a() {
+        return fg3a;
+    }
+
+    public Double getFg3_pct() {
+        return fg3_pct;
+    }
+
+    public Integer getFtm() {
+        return ftm;
+    }
+
+    public Integer getFta() {
+        return fta;
+    }
+
+    public Double getFt_pct() {
+        return ft_pct;
+    }
+
+    public Integer getOreb() {
+        return oreb;
+    }
+
+    public Integer getDreb() {
+        return dreb;
+    }
+
+    public Integer getReb() {
+        return reb;
+    }
+
+    public Integer getAst() {
+        return ast;
+    }
+
+    public Integer getStl() {
+        return stl;
+    }
+
+    public Integer getBlk() {
+        return blk;
+    }
+
+    public Integer getPf() {
+        return pf;
+    }
+
+    public Integer getPts() {
+        return pts;
+    }
+
+    public Integer getPlusminus() {
+        return plusminus;
+    }
+
     @Override
     public String toString() {
         return "TBD";
