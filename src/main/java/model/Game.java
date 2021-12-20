@@ -40,7 +40,7 @@ public class Game {
 
     public Game() {
     }
-    
+
     public Game(int gameID, int homeTeamID, int visitorTeamID, int season, int ptsHome, double fgPctHome, double ftPctHome, double fg3PctHome, int astHome, int rebHome, int ptsAway, double fgPctAway, double ftPctAway, double fg3PctAway, int astAway, int rebAway) {
         this.gameID = gameID;
         this.homeTeamID = homeTeamID;
