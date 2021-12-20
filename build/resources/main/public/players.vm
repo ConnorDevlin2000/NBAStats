@@ -1,0 +1,19 @@
+#set( $title = "Show players" )
+<body>
+    #if ($players)
+    <h1>List of all players:</h1>
+    <div>
+        <ol>
+        <p>
+            #foreach($p in $players)
+                <li>
+                    <i>$p.playerName</i>
+                    <i>$p.team.nickname</i>
+                </li>
+            #end
+            </p>
+
+        </ol>
+    </div>
+    #end
+</body>

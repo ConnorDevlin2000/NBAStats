@@ -7,7 +7,7 @@
         <p>
             #foreach($g in $games)
                 <li>
-                    <i>$g.season</i>
+                    <i>$g.gameID</i>
                 </li>
             #end
             </p>

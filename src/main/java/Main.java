@@ -34,9 +34,16 @@ public class Main {
     }
 
     private static Dao getPlayerORMLiteDao() throws SQLException {
+        getTeamORMLiteDao();
         final String URI = "jdbc:sqlite:./JBApp.db";
         ConnectionSource connectionSource = new JdbcConnectionSource(URI);
         TableUtils.createTableIfNotExists(connectionSource, Player.class);
+        Dao<Team,Integer> teamDao = DaoManager.createDao(connectionSource, Team.class);
+        Team t = new Team(12, 1950, 2021, "NYK", "Ultra Bums", 1950, "New York", "MSG", 1000);
+        teamDao.create(t);
+        Dao<Player,Integer> playerDao = DaoManager.createDao(connectionSource, Player.class);
+        Player p = new Player("Dilt Chamberlain", t, 11, 2020);
+        playerDao.create(p);
         return DaoManager.createDao(connectionSource, Player.class);
     }
 
@@ -65,6 +72,20 @@ public class Main {
             Map<String, Object> model = new HashMap<String, Object>();
             model.put("games", ls);
             return new ModelAndView(model, "public/games.vm");
+        }, new VelocityTemplateEngine());
+
+        Spark.get("/players", (req, res) -> {
+            List<Game> ls = getPlayerORMLiteDao().queryForAll();
+            Map<String, Object> model = new HashMap<String, Object>();
+            model.put("players", ls);
+            return new ModelAndView(model, "public/players.vm");
+        }, new VelocityTemplateEngine());
+
+        Spark.get("/teams", (req, res) -> {
+            List<Game> ls = getTeamORMLiteDao().queryForAll();
+            Map<String, Object> model = new HashMap<String, Object>();
+            model.put("teams", ls);
+            return new ModelAndView(model, "public/teams.vm");
         }, new VelocityTemplateEngine());
 
     }

@@ -9,8 +9,8 @@ import java.util.Objects;
 public class Player {
     @DatabaseField
     private String playerName;
-    @DatabaseField
-    private Integer teamID;
+    @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
+    private Team team;
     @DatabaseField(id = true)
     private Integer playerID;
     @DatabaseField
@@ -19,9 +19,9 @@ public class Player {
     public Player() {
     }
 
-    public Player(String playerName, int teamID, int playerID, int season) {
+    public Player(String playerName, Team team, int playerID, int season) {
         this.playerName = playerName;
-        this.teamID = teamID;
+        this.team = team;
         this.playerID = playerID;
         this.season = season;
     }
@@ -30,8 +30,8 @@ public class Player {
         return playerName;
     }
 
-    public Integer getTeamID() {
-        return teamID;
+    public Team getTeam() {
+        return team;
     }
 
     public Integer getSeason() {

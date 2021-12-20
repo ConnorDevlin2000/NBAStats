@@ -1,0 +1,19 @@
+#set( $title = "Show teams" )
+<body>
+    #if ($teams)
+    <h1>List of all teams:</h1>
+    <div>
+        <ol>
+        <p>
+            #foreach($t in $teams)
+                <li>
+                    <i>$t.teamID</i>
+                    <i>$t.nickname</i>
+                </li>
+            #end
+            </p>
+
+        </ol>
+    </div>
+    #end
+</body>

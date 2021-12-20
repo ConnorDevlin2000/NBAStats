@@ -26,6 +26,10 @@ public class Team {
     @DatabaseField
     private Integer arenaCapacity;
 
+    public Team(){
+
+    }
+
     public Team(int teamID, int minYear, int maxYear, String abbreviation, String nickname, int yearFounded,
             String city, String arena, int arenaCapacity) {
         this.teamID = teamID;
@@ -77,7 +81,7 @@ public class Team {
 
     @Override
     public String toString() {
-        return "TBD";
+        return "Team ID: " + teamID;
     }
 
     @Override
