@@ -1,9 +1,11 @@
 package model;
 
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.Objects;
 
+@DatabaseTable(tableName = "gameStats")
 public class GameStat {
     @DatabaseField
     private Integer gameID;

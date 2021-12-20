@@ -1,11 +1,13 @@
 package model;
 
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.Objects;
 
+@DatabaseTable(tableName = "teams")
 public class Team {
-    @DatabaseField
+    @DatabaseField(id = true)
     private Integer teamID;
     @DatabaseField
     private Integer minYear;

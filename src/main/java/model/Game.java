@@ -1,11 +1,13 @@
 package model;
 
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.Objects;
 
+@DatabaseTable(tableName = "games")
 public class Game {
-    @DatabaseField
+    @DatabaseField(id = true)
     private Integer gameID;
     @DatabaseField
     private Integer homeTeamID;
@@ -58,6 +60,10 @@ public class Game {
         this.fg3PctAway = fg3PctAway;
         this.astAway = astAway;
         this.rebAway = rebAway;
+    }
+
+    public Integer getSeason() {
+        return season;
     }
 
     @Override
