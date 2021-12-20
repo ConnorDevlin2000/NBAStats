@@ -7,12 +7,12 @@ import java.util.Objects;
 
 @DatabaseTable(tableName = "gameStats")
 public class GameStat {
-    @DatabaseField
-    private Integer gameID;
-    @DatabaseField
-    private Integer teamID;
-    @DatabaseField
-    private Integer playerID;
+    @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
+    private Game game;
+    @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
+    private Team team;
+    @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
+    private Player player;
     @DatabaseField
     private Integer fgm;
     @DatabaseField
@@ -50,9 +50,12 @@ public class GameStat {
     @DatabaseField
     private Integer plusminus;
 
-    public GameStat(int gameID, int teamID, int fgm, int fga, double fg_pct, int fg3m, int fg3a, double fg3_pct, int ftm, int fta, double ft_pct, int oreb, int dreb, int reb, int ast, int stl, int blk, int pf, int pts, int plusminus) {
-        this.gameID = gameID;
-        this.teamID = teamID;
+    public GameStat(Game gameID, Team teamID, Player playerId, int fgm, int fga, double fg_pct, int fg3m, int fg3a,
+            double fg3_pct, int ftm, int fta, double ft_pct, int oreb, int dreb, int reb, int ast, int stl, int blk,
+            int pf, int pts, int plusminus) {
+        this.game = gameID;
+        this.team = teamID;
+        this.player = playerId;
         this.fgm = fgm;
         this.fga = fga;
         this.fg_pct = fg_pct;
@@ -73,16 +76,16 @@ public class GameStat {
         this.plusminus = plusminus;
     }
 
-    public Integer getGameID() {
-        return gameID;
+    public Game getGame() {
+        return game;
     }
 
-    public Integer getTeamID() {
-        return teamID;
+    public Team getTeam() {
+        return team;
     }
 
-    public Integer getPlayerID() {
-        return playerID;
+    public Player getPlayer() {
+        return player;
     }
 
     public Integer getFgm() {
@@ -169,11 +172,11 @@ public class GameStat {
         if (o == null || getClass() != o.getClass())
             return false;
         GameStat g = (GameStat) o;
-        return gameID.equals(g.gameID) && playerID.equals(g.playerID);
+        return game.equals(g.game) && player.equals(g.player);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(gameID, teamID, playerID);
+        return Objects.hash(game.getGameID(), team.getTeamID(), player.getPlayerID());
     }
 }

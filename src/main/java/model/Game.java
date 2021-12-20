@@ -9,10 +9,10 @@ import java.util.Objects;
 public class Game {
     @DatabaseField(id = true)
     private Integer gameID;
-    @DatabaseField
-    private Integer homeTeamID;
-    @DatabaseField
-    private Integer visitorTeamID;
+    @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
+    private Team homeTeam;
+    @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
+    private Team visitorTeam;
     @DatabaseField
     private Integer season;
     @DatabaseField
@@ -43,10 +43,12 @@ public class Game {
     public Game() {
     }
 
-    public Game(int gameID, int homeTeamID, int visitorTeamID, int season, int ptsHome, double fgPctHome, double ftPctHome, double fg3PctHome, int astHome, int rebHome, int ptsAway, double fgPctAway, double ftPctAway, double fg3PctAway, int astAway, int rebAway) {
+    public Game(int gameID, Team homeTeamID, Team visitorTeamID, int season, int ptsHome, double fgPctHome,
+            double ftPctHome, double fg3PctHome, int astHome, int rebHome, int ptsAway, double fgPctAway,
+            double ftPctAway, double fg3PctAway, int astAway, int rebAway) {
         this.gameID = gameID;
-        this.homeTeamID = homeTeamID;
-        this.visitorTeamID = visitorTeamID;
+        this.homeTeam = homeTeamID;
+        this.visitorTeam = visitorTeamID;
         this.season = season;
         this.ptsHome = ptsHome;
         this.fgPctHome = fgPctHome;
@@ -66,12 +68,12 @@ public class Game {
         return gameID;
     }
 
-    public Integer getHomeTeamID() {
-        return homeTeamID;
+    public Team getHomeTeamID() {
+        return homeTeam;
     }
 
-    public Integer getVisitorTeamID() {
-        return visitorTeamID;
+    public Team getVisitorTeamID() {
+        return visitorTeam;
     }
 
     public Integer getSeason() {
@@ -146,4 +148,3 @@ public class Game {
         return Objects.hash(gameID);
     }
 }
-
