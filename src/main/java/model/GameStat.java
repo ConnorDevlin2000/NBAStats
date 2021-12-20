@@ -10,54 +10,65 @@ public class GameStat {
     @DatabaseField
     private Integer teamID;
     @DatabaseField
-    private Integer visitorTeamID;
+    private Integer playerID;
     @DatabaseField
-    private Integer season;
+    private Integer fgm;
     @DatabaseField
-    private Integer ptsHome;
+    private Integer fga;
     @DatabaseField
-    private Double fgPctHome;
+    private Double fg_pct;
     @DatabaseField
-    private Double ftPctHome;
+    private Integer fg3m;
     @DatabaseField
-    private Double fg3PctHome;
+    private Integer fg3a;
     @DatabaseField
-    private Integer astHome;
+    private Double fg3_pct;
     @DatabaseField
-    private Integer rebHome;
+    private Integer ftm;
     @DatabaseField
-    private Integer ptsAway;
+    private Integer fta;
     @DatabaseField
-    private Double fgPctAway;
+    private Double ft_pct;
     @DatabaseField
-    private Double ftPctAway;
+    private Integer oreb;
     @DatabaseField
-    private Double fg3PctAway;
+    private Integer dreb;
     @DatabaseField
-    private Integer astAway;
+    private Integer reb;
     @DatabaseField
-    private Integer rebAway;
+    private Integer ast;
+    @DatabaseField
+    private Integer stl;
+    @DatabaseField
+    private Integer blk;
+    @DatabaseField
+    private Integer pf;
+    @DatabaseField
+    private Integer pts;
+    @DatabaseField
+    private Integer plusminus;
 
-    public Game() {
-    }
-
-    public Game(int gameID, int homeTeamID, int visitorTeamID, int season, int ptsHome, double fgPctHome, double ftPctHome, double fg3PctHome, int astHome, int rebHome, int ptsAway, double fgPctAway, double ftPctAway, double fg3PctAway, int astAway, int rebAway) {
+    public GameStat(int gameID, int teamID, int fgm, int fga, double fg_pct, int fg3m, int fg3a, double fg3_pct, int ftm, int fta, double ft_pct, int oreb, int dreb, int reb, int ast, int stl, int blk, int pf, int pts, int plusminus) {
         this.gameID = gameID;
-        this.homeTeamID = homeTeamID;
-        this.visitorTeamID = visitorTeamID;
-        this.season = season;
-        this.ptsHome = ptsHome;
-        this.fgPctHome = fgPctHome;
-        this.ftPctHome = ftPctHome;
-        this.fg3PctHome = fg3PctHome;
-        this.astHome = astHome;
-        this.rebHome = rebHome;
-        this.ptsAway = ptsAway;
-        this.fgPctAway = fgPctAway;
-        this.ftPctAway = ftPctAway;
-        this.fg3PctAway = fg3PctAway;
-        this.astAway = astAway;
-        this.rebAway = rebAway;
+        this.teamID = teamID;
+        this.fgm = fgm;
+        this.fga = fga;
+        this.fg_pct = fg_pct;
+        this.fg3m = fg3m;
+        this.fg3a = fg3a;
+        this.fg3_pct = fg3_pct;
+        this.ftm = ftm;
+        this.fta = fta;
+        this.ft_pct = ft_pct;
+        this.oreb = oreb;
+        this.dreb = dreb;
+        this.reb = reb;
+        this.ast = ast;
+        this.stl = stl;
+        this.blk = blk;
+        this.pf = pf;
+        this.pts = pts;
+        this.plusminus = plusminus;
     }
 
     @Override
@@ -71,12 +82,12 @@ public class GameStat {
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
-        Game g = (Game) o;
-        return gameID.equals(g.gameID);
+        GameStat g = (GameStat) o;
+        return gameID.equals(g.gameID) && playerID.equals(g.playerID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(gameID);
+        return Objects.hash(gameID, teamID, playerID);
     }
 }
