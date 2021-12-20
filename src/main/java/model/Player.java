@@ -26,6 +26,18 @@ public class Player {
         this.season = season;
     }
 
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public Integer getTeamID() {
+        return teamID;
+    }
+
+    public Integer getSeason() {
+        return season;
+    }
+
     public Integer getPlayerID() {
         return playerID;
     }

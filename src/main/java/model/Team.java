@@ -26,9 +26,6 @@ public class Team {
     @DatabaseField
     private Integer arenaCapacity;
 
-    public Team() {
-    }
-
     public Team(int teamID, int minYear, int maxYear, String abbreviation, String nickname, int yearFounded,
             String city, String arena, int arenaCapacity) {
         this.teamID = teamID;
@@ -44,6 +41,38 @@ public class Team {
 
     public Integer getTeamID() {
         return teamID;
+    }
+
+    public Integer getMinYear() {
+        return minYear;
+    }
+
+    public Integer getMaxYear() {
+        return maxYear;
+    }
+
+    public String getAbbreviation() {
+        return abbreviation;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public Integer getYearFounded() {
+        return yearFounded;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getArena() {
+        return arena;
+    }
+
+    public Integer getArenaCapacity() {
+        return arenaCapacity;
     }
 
     @Override
