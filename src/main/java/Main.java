@@ -15,12 +15,10 @@ import spark.ModelAndView;
 import spark.Spark;
 import spark.template.velocity.VelocityTemplateEngine;
 
+import java.io.File;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
     private static Dao getGameORMLiteDao() throws SQLException {
@@ -55,6 +53,24 @@ public class Main {
 
         final int PORT_NUM = 7000;
         Spark.port(PORT_NUM);
+
+        try{
+            Scanner s = new Scanner(new File("src/main/java/archive/teams.csv"));
+            while(s.hasNextLine()){
+                String line = s.nextLine();
+                String[] toCreate = line.split(",");
+                final String URI = "jdbc:sqlite:./JBApp.db";
+                ConnectionSource connectionSource = new JdbcConnectionSource(URI);
+                Dao<Team,Integer> teamDao = DaoManager.createDao(connectionSource, Team.class);
+                Team t = new Team(Integer.parseInt(toCreate[1]), toCreate[4], toCreate[5], Integer.parseInt(toCreate[6]), toCreate[7], toCreate[8]);
+                teamDao.create(t);
+            }
+        } catch (Exception e) {
+            System.out.println("Working Directory = " + System.getProperty("user.dir"));
+            System.err.println("You're fucked!");
+        }
+
+
 
         Spark.get("/", (req, res) -> {
             List<Game> ls = getGameORMLiteDao().queryForAll();
