@@ -179,17 +179,8 @@ public class Main {
             return new ModelAndView(model, "public/teams.vm");
         }, new VelocityTemplateEngine());
 
-        Spark.get("/gamestats", (req, res) -> {
-            List<GameStat> ls = getGameStatORMLiteDao().queryForAll();
-            Map<String, Object> model = new HashMap<String, Object>();
-            model.put("gamestats", ls);
-            return new ModelAndView(model, "public/gamestats.vm");
-        }, new VelocityTemplateEngine());
-
         Spark.get("/queryselector", (req, res) -> {
-            // List<GameStat> ls = getGameStatORMLiteDao().queryForAll();
             Map<String, Object> model = new HashMap<String, Object>();
-            // model.put("queryselector", ls);
             return new ModelAndView(model, "public/queryselector.vm");
         }, new VelocityTemplateEngine());
 
@@ -218,6 +209,7 @@ public class Main {
                 return result;
             } else if (select.equals("team")) {
                 // query += "Team.nickanme FROM GameStat JOIN Team ON GameStat";
+
             } else {
 
             }
