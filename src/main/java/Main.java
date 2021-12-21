@@ -196,13 +196,13 @@ public class Main {
                 if (operator.equals(">")) {
                     query.distinct().selectColumns("player_id").where().gt(attributes, Integer.parseInt(value));
                 } else if (operator.equals(">=")) {
-                    query.where().ge(attributes, Integer.parseInt(value));
+                    query.distinct().selectColumns("player_id").where().ge(attributes, Integer.parseInt(value));
                 } else if (operator.equals("<")) {
-                    query.where().lt(attributes, Integer.parseInt(value));
+                    query.distinct().selectColumns("player_id").where().lt(attributes, Integer.parseInt(value));
                 } else if (operator.equals("<=")) {
-                    query.where().le(attributes, Integer.parseInt(value));
+                    query.distinct().selectColumns("player_id").where().le(attributes, Integer.parseInt(value));
                 } else {
-                    query.where().eq(attributes, Integer.parseInt(value));
+                    query.distinct().selectColumns("player_id").where().eq(attributes, Integer.parseInt(value));
                 }
                 PreparedQuery<GameStat> preparedQuery = query.prepare();
                 List<GameStat> result = gameStatDao.query(preparedQuery);
