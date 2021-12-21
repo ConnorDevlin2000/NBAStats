@@ -64,12 +64,8 @@
 
 <body>
 <div class ="login">
-    <form action="/players" method="GET" class="form-inline" id="form">
-        <button type="submit" class="btn btn-primary btn-block btn-large" style="width:50%;">Show me all Players</button>
-    </form>
-    <form action="/teams" method="GET" class="form-inline" id="form">
-        <button type="submit" class="btn btn-primary btn-block btn-large" style="width:50%;">Show me all Teams</button>
-    </form>
+    <a href="/players" type="submit" style="width:50%; color:white; text-align:center">Show me all Players</a>
+        <a href="/teams" type="submit" style="width:50%; color:white; text-align:center">Show me all Teams</a>
     <h1>Ask Away(Team Data)</h1>
     <form action = "/queryselectorTeam" method = "POST" class="form-inline" id = "form">
         <label for="select"  style="color:white;">Show me </label>
