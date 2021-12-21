@@ -1,0 +1,20 @@
+#set( $title = "Show games" )
+<body>
+    #if ($games)
+    <h1>List of all games:</h1>
+    <div>
+        <ol>
+        <p>
+            #foreach($g in $games)
+                <li>
+                    <i>$g.gameID</i>
+                    <i>$g.homeTeam.nickname</i>
+                    <i>$g.visitorTeam.nickname</i>
+                </li>
+            #end
+            </p>
+
+        </ol>
+    </div>
+    #end
+</body>

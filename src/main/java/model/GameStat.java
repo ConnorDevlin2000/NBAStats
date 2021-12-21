@@ -52,7 +52,7 @@ public class GameStat {
     @DatabaseField
     private Integer plusminus;
 
-    public GameStat(){
+    public GameStat() {
 
     }
 
@@ -168,7 +168,7 @@ public class GameStat {
 
     @Override
     public String toString() {
-        return "TBD";
+        return "Player: " + player.getPlayerName();
     }
 
     @Override

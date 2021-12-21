@@ -44,7 +44,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return "TBD";
+        return "Name: " + playerName;
     }
 
     @Override
