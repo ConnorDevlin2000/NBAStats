@@ -1,4 +1,5 @@
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
@@ -142,6 +143,29 @@ public class Main {
             model.put("gamestats", ls);
             return new ModelAndView(model, "public/gamestats.vm");
         }, new VelocityTemplateEngine());
+
+        Spark.get("/queryselector", (req, res) -> {
+            List<GameStat> ls = getGameStatORMLiteDao().queryForAll();
+            Map<String, Object> model = new HashMap<String, Object>();
+            model.put("queryselector", ls);
+            return new ModelAndView(model, "public/queryselector.vm");
+        }, new VelocityTemplateEngine());
+
+        Spark.post("/queryselector", (req, res) -> {
+            String select = req.queryParams("field1");
+            String attributes = req.queryParams("attributes");
+            String operator = req.queryParams("operator");
+            String value = String.valueOf(req.queryParams("value"));
+            JsonObject obj = new JsonObject();
+            obj.addProperty("select", select);
+            obj.addProperty("attributes", attributes);
+            obj.addProperty("operator", operator);
+            obj.addProperty("value", value);
+//            res.status(201);
+//            res.type("application/json");
+            return obj;
+        });
+
 
     }
 }
