@@ -55,6 +55,7 @@ public class Main {
         final int PORT_NUM = 7000;
         Spark.port(PORT_NUM);
         Spark.staticFiles.location("/public");
+        Map<String, Object> resultModel = new HashMap<String, Object>();
 
         // try{
         // // Scanner s = new Scanner(new File("src/main/java/archive/teams.csv"));
@@ -165,14 +166,14 @@ public class Main {
         }, new VelocityTemplateEngine());
 
         Spark.get("/players", (req, res) -> {
-            List<Game> ls = getPlayerORMLiteDao().queryForAll();
+            List<Player> ls = getPlayerORMLiteDao().queryForAll();
             Map<String, Object> model = new HashMap<String, Object>();
             model.put("players", ls);
             return new ModelAndView(model, "public/players.vm");
         }, new VelocityTemplateEngine());
 
         Spark.get("/teams", (req, res) -> {
-            List<Game> ls = getTeamORMLiteDao().queryForAll();
+            List<Team> ls = getTeamORMLiteDao().queryForAll();
             Map<String, Object> model = new HashMap<String, Object>();
             model.put("teams", ls);
             return new ModelAndView(model, "public/teams.vm");
@@ -186,6 +187,10 @@ public class Main {
         Spark.get("/queryselectorTeam", (req, res) -> {
             Map<String, Object> model = new HashMap<String, Object>();
             return new ModelAndView(model, "public/queryselectorTeam.vm");
+        }, new VelocityTemplateEngine());
+
+        Spark.get("/results", (req, res) -> {
+            return new ModelAndView(resultModel, "public/results.vm");
         }, new VelocityTemplateEngine());
 
         Spark.post("/queryselector", (req, res) -> {
@@ -209,6 +214,9 @@ public class Main {
             }
             PreparedQuery<GameStat> preparedQuery = query.prepare();
             List<GameStat> result = gameStatDao.query(preparedQuery);
+            resultModel.put("players",result);
+            resultModel.put("type","player");
+            res.redirect("/results");
             return result;
         });
 
@@ -226,6 +234,9 @@ public class Main {
                     .having("AVG(" + attributes.replaceAll("_", "") + "home" + ") " + operator + value);
             PreparedQuery<Game> preparedQuery2 = query2.prepare();
             List<Game> result2 = gameDao.query(preparedQuery2);
+            resultModel.put("teams",result2);
+            resultModel.put("type","team");
+            res.redirect("/results");
             return result2;
         });
 

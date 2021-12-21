@@ -1,31 +1,31 @@
 #set( $title = "Show players" )
 <body>
-<p>HIIIIIII</p>
-    #if ($players)
-    <h1>List of all players:</h1>
+    #if ($type == "player")
+        <h1>List of all players:</h1>
+        <div>
+            <ol>
+                <p>
+                #foreach($p in $players)
+                    <li>
+                        <i>$p.getPlayer().playerName</i>
+
+                    </li>
+                #end
+                </p>
+            </ol>
+        </div>
+    #elseif ($type == "team")
+    <h1>List of all teams:</h1>
     <div>
         <ol>
-        <p>
-            #foreach($p in $players)
-                <li>
-                    <i>$p.playerName</i>
+            <p>
+                #foreach($t in $teams)
+                    <li>
+                        <i>$t.homeTeam.nickname</i>
 
-                </li>
-                <li>
-                    <i>$p.playerID</i>
-                </li>
-                <li>
-                    <i>$p.team.nickname</i>
-                </li>
-                <li>
-                    <i>$p.team.teamID</i>
-                </li>
-                <li>
-                    <i>$p.season</i>
-                </li>
-            #end
+                    </li>
+                #end
             </p>
-
         </ol>
     </div>
     #end
