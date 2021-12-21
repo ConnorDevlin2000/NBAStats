@@ -55,71 +55,78 @@ public class Main {
         final int PORT_NUM = 7000;
         Spark.port(PORT_NUM);
 
-//        try{
-////            Scanner s = new Scanner(new File("src/main/java/archive/teams.csv"));
-////            while(s.hasNextLine()){
-////                String line = s.nextLine();
-////                String[] toCreate = line.split(",");
-////                final String URI = "jdbc:sqlite:./JBApp.db";
-////                ConnectionSource connectionSource = new JdbcConnectionSource(URI);
-////                Dao<Team,Integer> teamDao = DaoManager.createDao(connectionSource, Team.class);
-////                Team t = new Team(Integer.parseInt(toCreate[1]), toCreate[4], toCreate[5], Integer.parseInt(toCreate[6]), toCreate[7], toCreate[8]);
-////                teamDao.create(t);
-////            }
-//
-////            Scanner s = new Scanner(new File("src/main/java/archive/players.csv"));
-////            for(int i = 0; i < 5000; i++){
-////                s.nextLine();
-////            }
-////            int counter = 1;
-////            while(s.hasNextLine()){
-////                System.out.println("Step: " + counter++);
-////                String line = s.nextLine();
-////                String[] toCreate = line.split(",");
-////                System.out.println(line);
-////                final String URI = "jdbc:sqlite:./JBApp.db";
-////                ConnectionSource connectionSource = new JdbcConnectionSource(URI);
-//////                TableUtils.dropTable(connectionSource, Player.class, true);
-//////                TableUtils.createTableIfNotExists(connectionSource, Player.class);
-////                Dao<Player,Integer> playerDao = DaoManager.createDao(connectionSource, Player.class);
-////                Team t = (Team) getTeamORMLiteDao().queryForEq("teamID", Integer.parseInt(toCreate[1])).get(0);
-////                Player p = new Player(toCreate[0], t, Integer.parseInt(toCreate[2]), Integer.parseInt(toCreate[3]));
-////                playerDao.createIfNotExists(p);
-////            }
-//            final String URI = "jdbc:sqlite:./JBApp.db";
-//            ConnectionSource connectionSource = new JdbcConnectionSource(URI);
-//            Scanner s = new Scanner(new File("src/main/java/archive/games_details.csv"));
-//            s.nextLine();
-//            int counter = 1;
-//            for(int i = 0; i < 58000; i++){
-//                s.nextLine();
-//                counter++;
+        try{
+//            Scanner s = new Scanner(new File("src/main/java/archive/teams.csv"));
+//            while(s.hasNextLine()){
+//                String line = s.nextLine();
+//                String[] toCreate = line.split(",");
+//                final String URI = "jdbc:sqlite:./JBApp.db";
+//                ConnectionSource connectionSource = new JdbcConnectionSource(URI);
+//                Dao<Team,Integer> teamDao = DaoManager.createDao(connectionSource, Team.class);
+//                Team t = new Team(Integer.parseInt(toCreate[1]), toCreate[4], toCreate[5], Integer.parseInt(toCreate[6]), toCreate[7], toCreate[8]);
+//                teamDao.create(t);
 //            }
+
+//            Scanner s = new Scanner(new File("src/main/java/archive/players.csv"));
+//            for(int i = 0; i < 5000; i++){
+//                s.nextLine();
+//            }
+//            int counter = 1;
 //            while(s.hasNextLine()){
 //                System.out.println("Step: " + counter++);
 //                String line = s.nextLine();
 //                String[] toCreate = line.split(",");
-////                System.out.println(line);
+//                System.out.println(line);
+//                final String URI = "jdbc:sqlite:./JBApp.db";
+//                ConnectionSource connectionSource = new JdbcConnectionSource(URI);
 ////                TableUtils.dropTable(connectionSource, Player.class, true);
 ////                TableUtils.createTableIfNotExists(connectionSource, Player.class);
-//
-//                ArrayList<Team> t = (ArrayList<Team>) getTeamORMLiteDao().queryForEq("teamID", Integer.parseInt(toCreate[1]));
-//                ArrayList<Player> p = (ArrayList<Player>) getPlayerORMLiteDao().queryForEq("playerID", Integer.parseInt(toCreate[4]));
-//                ArrayList<Game> g = (ArrayList<Game>) getGameORMLiteDao().queryForEq("gameID", Integer.parseInt(toCreate[0]));
-//
-//                Dao<GameStat,Integer> gameStatDao = DaoManager.createDao(connectionSource, GameStat.class);
-//                if(toCreate[8].length() > 0 || t.isEmpty() || p.isEmpty() || g.isEmpty()){
-//                    continue;
-//                }
-//
-//                GameStat gs = new GameStat(g.get(0), t.get(0), p.get(0), (int) Double.parseDouble(toCreate[10]), (int) Double.parseDouble(toCreate[11]), Double.parseDouble(toCreate[12]), (int) Double.parseDouble(toCreate[13]), (int) Double.parseDouble(toCreate[14]), Double.parseDouble(toCreate[15]), (int) Double.parseDouble(toCreate[16]), (int) Double.parseDouble(toCreate[17]), Double.parseDouble(toCreate[18]), (int) Double.parseDouble(toCreate[19]), (int) Double.parseDouble(toCreate[20]), (int) Double.parseDouble(toCreate[21]), (int) Double.parseDouble(toCreate[22]), (int) Double.parseDouble(toCreate[23]), (int) Double.parseDouble(toCreate[24]), (int) Double.parseDouble(toCreate[25]), (int) Double.parseDouble(toCreate[26]), (int) Double.parseDouble(toCreate[27]));
-//                gameStatDao.createIfNotExists(gs);
+//                Dao<Player,Integer> playerDao = DaoManager.createDao(connectionSource, Player.class);
+//                Team t = (Team) getTeamORMLiteDao().queryForEq("teamID", Integer.parseInt(toCreate[1])).get(0);
+//                Player p = new Player(toCreate[0], t, Integer.parseInt(toCreate[2]), Integer.parseInt(toCreate[3]));
+//                playerDao.createIfNotExists(p);
 //            }
-//        } catch (Exception e) {
-//            System.out.println("Working Directory = " + System.getProperty("user.dir"));
-//            System.err.println("You're fucked!");
-//            System.err.println(e.toString());
-//        }
+            final String URI = "jdbc:sqlite:./JBApp.db";
+            ConnectionSource connectionSource = new JdbcConnectionSource(URI);
+            Scanner s = new Scanner(new File("src/main/java/archive/games_details.csv"));
+            s.nextLine();
+            int counter = 1;
+            for(int i = 0; i < 148000; i++){
+                s.nextLine();
+                counter++;
+            }
+            while(s.hasNextLine()){
+                System.out.println("Step: " + counter++);
+                String line = s.nextLine();
+                String[] toCreate = line.split(",");
+                System.out.println("Length: " + toCreate.length);
+//                System.out.println(line);
+//                TableUtils.dropTable(connectionSource, Player.class, true);
+//                TableUtils.createTableIfNotExists(connectionSource, Player.class);
+
+                ArrayList<Team> t = (ArrayList<Team>) getTeamORMLiteDao().queryForEq("teamID", Integer.parseInt(toCreate[1]));
+                ArrayList<Player> p = (ArrayList<Player>) getPlayerORMLiteDao().queryForEq("playerID", Integer.parseInt(toCreate[4]));
+                ArrayList<Game> g = (ArrayList<Game>) getGameORMLiteDao().queryForEq("gameID", Integer.parseInt(toCreate[0]));
+
+                Dao<GameStat,Integer> gameStatDao = DaoManager.createDao(connectionSource, GameStat.class);
+                if(toCreate[8].length() > 0 || t.isEmpty() || p.isEmpty() || g.isEmpty()){
+                    continue;
+                }
+
+                if(toCreate.length == 29) {
+                    GameStat gs = new GameStat(g.get(0), t.get(0), p.get(0), (int) Double.parseDouble(toCreate[10]), (int) Double.parseDouble(toCreate[11]), Double.parseDouble(toCreate[12]), (int) Double.parseDouble(toCreate[13]), (int) Double.parseDouble(toCreate[14]), Double.parseDouble(toCreate[15]), (int) Double.parseDouble(toCreate[16]), (int) Double.parseDouble(toCreate[17]), Double.parseDouble(toCreate[18]), (int) Double.parseDouble(toCreate[19]), (int) Double.parseDouble(toCreate[20]), (int) Double.parseDouble(toCreate[21]), (int) Double.parseDouble(toCreate[22]), (int) Double.parseDouble(toCreate[23]), (int) Double.parseDouble(toCreate[24]), (int) Double.parseDouble(toCreate[26]), (int) Double.parseDouble(toCreate[27]), (int) Double.parseDouble(toCreate[28]));
+                    gameStatDao.createIfNotExists(gs);
+                } else {
+                    GameStat gs = new GameStat(g.get(0), t.get(0), p.get(0), (int) Double.parseDouble(toCreate[10]), (int) Double.parseDouble(toCreate[11]), Double.parseDouble(toCreate[12]), (int) Double.parseDouble(toCreate[13]), (int) Double.parseDouble(toCreate[14]), Double.parseDouble(toCreate[15]), (int) Double.parseDouble(toCreate[16]), (int) Double.parseDouble(toCreate[17]), Double.parseDouble(toCreate[18]), (int) Double.parseDouble(toCreate[19]), (int) Double.parseDouble(toCreate[20]), (int) Double.parseDouble(toCreate[21]), (int) Double.parseDouble(toCreate[22]), (int) Double.parseDouble(toCreate[23]), (int) Double.parseDouble(toCreate[24]), (int) Double.parseDouble(toCreate[26]), (int) Double.parseDouble(toCreate[27]), 0);
+                    gameStatDao.createIfNotExists(gs);
+                }
+
+            }
+        } catch (Exception e) {
+            System.out.println("Working Directory = " + System.getProperty("user.dir"));
+            System.err.println("You're fucked!");
+            System.err.println(e.toString());
+        }
 
         Spark.get("/", (req, res) -> {
             List<Game> ls = getGameORMLiteDao().queryForAll();
