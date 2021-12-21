@@ -194,7 +194,7 @@ public class Main {
             QueryBuilder<GameStat, Integer> query = gameStatDao.queryBuilder();
             if (select.equals("player")) {
                 if (operator.equals(">")) {
-                    query.where().gt(attributes, Integer.parseInt(value));
+                    query.distinct().selectColumns("player_id").where().gt(attributes, Integer.parseInt(value));
                 } else if (operator.equals(">=")) {
                     query.where().ge(attributes, Integer.parseInt(value));
                 } else if (operator.equals("<")) {
