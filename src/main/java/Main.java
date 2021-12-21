@@ -54,6 +54,7 @@ public class Main {
 
         final int PORT_NUM = 7000;
         Spark.port(PORT_NUM);
+        Spark.staticFiles.location("/public");
 
         // try{
         // // Scanner s = new Scanner(new File("src/main/java/archive/teams.csv"));
@@ -170,13 +171,6 @@ public class Main {
             return new ModelAndView(model, "public/players.vm");
         }, new VelocityTemplateEngine());
 
-        Spark.get("/games", (req, res) -> {
-            List<Game> ls = getGameORMLiteDao().queryForAll();
-            Map<String, Object> model = new HashMap<String, Object>();
-            model.put("games", ls);
-            return new ModelAndView(model, "public/games.vm");
-        }, new VelocityTemplateEngine());
-
         Spark.get("/teams", (req, res) -> {
             List<Game> ls = getTeamORMLiteDao().queryForAll();
             Map<String, Object> model = new HashMap<String, Object>();
@@ -185,9 +179,7 @@ public class Main {
         }, new VelocityTemplateEngine());
 
         Spark.get("/queryselector", (req, res) -> {
-            // List<Game> ls = getGameStatORMLiteDao().queryForAll();
             Map<String, Object> model = new HashMap<String, Object>();
-            // model.put("queryselector", ls);
             return new ModelAndView(model, "public/queryselector.vm");
         }, new VelocityTemplateEngine());
 
@@ -196,7 +188,7 @@ public class Main {
             String attributes = req.queryParams("attributes");
             String operator = req.queryParams("operator");
             String value = String.valueOf(req.queryParams("value"));
-            JsonObject obj = new JsonObject();
+
             Dao<GameStat, Integer> gameStatDao = getGameStatORMLiteDao();
             QueryBuilder<GameStat, Integer> query = gameStatDao.queryBuilder();
             if (select.equals("player")) {
@@ -211,18 +203,20 @@ public class Main {
                 } else {
                     query.distinct().selectColumns("player_id").where().eq(attributes, Integer.parseInt(value));
                 }
-                PreparedQuery<GameStat> preparedQuery = query.prepare();
-                List<GameStat> result = gameStatDao.query(preparedQuery);
-                Map<String, Object> model = new HashMap<String, Object>();
-                model.put("players", result);
-                return result;
             } else if (select.equals("team")) {
-                // query += "Team.nickanme FROM GameStat JOIN Team ON GameStat";
-
+                Dao<Game, Integer> gameDao = getGameORMLiteDao();
+                QueryBuilder<Game, Integer> query2 = gameDao.queryBuilder();
+                query2.groupBy("homeTeam_id").having("AVG(" + attributes.replaceAll("_", "") + "home" + ") " + operator + value);
+                PreparedQuery<Game> preparedQuery2 = query2.prepare();
+                List<Game> result2 = gameDao.query(preparedQuery2);
+                return result2;
             } else {
 
             }
-            return null;
+
+            PreparedQuery<GameStat> preparedQuery = query.prepare();
+            List<GameStat> result = gameStatDao.query(preparedQuery);
+            return result;
         });
 
     }

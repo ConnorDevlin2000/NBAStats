@@ -64,6 +64,12 @@
 
 <body>
 <div class ="login">
+    <form action="/players" method="GET" class="form-inline" id="form">
+        <button type="submit" class="btn btn-primary btn-block btn-large" style="width:50%;">Show me all Players</button>
+    </form>
+    <form action="/teams" method="GET" class="form-inline" id="form">
+        <button type="submit" class="btn btn-primary btn-block btn-large" style="width:50%;">Show me all Teams</button>
+    </form>
     <h1>Ask Away</h1>
     <form action = "/queryselector" method = "POST" class="form-inline" id = "form">
         <label for="select"  style="color:white;">Show me </label>
@@ -73,7 +79,7 @@
             <option value="season">Seasons</option>
         </select>
         <label for="pwd" style="color:white;"> where </label>
-        <select name="attributes" id="cars">
+        <select name="attributes" id="select">
             <option value="fgm">Field Goals Made</option>
             <option value="fga">Field Goals Attempted</option>
             <option value="fg_pct">Field Goal Percentage</option>
@@ -86,7 +92,7 @@
             <option value="oreb">Offensive Rebounds</option>
             <option value="dreb">Defensive Rebounds</option>
             <option value="reb">Rebounds</option>
-            <option value="ast">Assits</option>
+            <option value="ast">Assists</option>
             <option value="stl">Steals</option>
             <option value="blk">Blocks</option>
             <option value="pf">Fouls</option>
@@ -105,78 +111,4 @@
     </form>
 </div>
 </body>
-
-##<script>
-##  var currentForm = document.getElementById("form");
-##  var br = document.createElement("br");
-##
-##  function makeForm() {
-##    console.log("hello");
-##
-##    // Create a form synamically
-##
-##    // Create an input element for Full Name
-##    var FN = document.createElement("input");
-##    FN.setAttribute("type", "text");
-##    FN.setAttribute("name", "FullName");
-##    FN.setAttribute("placeholder", "Full Name");
-##
-##    // Create an input element for date of birth
-##    var DOB = document.createElement("input");
-##    DOB.setAttribute("type", "text");
-##    DOB.setAttribute("name", "dob");
-##    DOB.setAttribute("placeholder", "DOB");
-##
-##    // Create an input element for emailID
-##    var EID = document.createElement("input");
-##    EID.setAttribute("type", "text");
-##    EID.setAttribute("name", "emailID");
-##    EID.setAttribute("placeholder", "E-Mail ID");
-##
-##    // Create an input element for password
-##    var PWD = document.createElement("input");
-##    PWD.setAttribute("type", "password");
-##    PWD.setAttribute("name", "password");
-##    PWD.setAttribute("placeholder", "Password");
-##
-##    // Create an input element for retype-password
-##    var RPWD = document.createElement("input");
-##    RPWD.setAttribute("type", "password");
-##    RPWD.setAttribute("name", "reTypePassword");
-##    RPWD.setAttribute("placeholder", "ReEnter Password");
-##
-##    // create a submit button
-##    var s = document.createElement("input");
-##    s.setAttribute("type", "submit");
-##    s.setAttribute("value", "Submit");
-##
-##    // Append the full name input to the form
-##    currentForm.appendChild(FN);
-##
-##    // Inserting a line break
-##    currentForm.appendChild(br.cloneNode());
-##
-##    // Append the DOB to the form
-##    currentForm.appendChild(DOB);
-##    currentForm.appendChild(br.cloneNode());
-##
-##    // Append the emailID to the form
-##    currentForm.appendChild(EID);
-##    currentForm.appendChild(br.cloneNode());
-##
-##    // Append the Password to the form
-##    currentForm.appendChild(PWD);
-##    currentForm.appendChild(br.cloneNode());
-##
-##    // Append the ReEnterPassword to the form
-##    currentForm.appendChild(RPWD);
-##    currentForm.appendChild(br.cloneNode());
-##
-##    // Append the submit button to the form
-##    currentForm.appendChild(s);
-##
-##    // document.getElementsByTagName("body")[0]
-##    //     .appendChild(form);
-##  }
-##
-##</script>
+<script src="js/options.js"></script>
