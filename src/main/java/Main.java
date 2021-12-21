@@ -180,7 +180,9 @@ public class Main {
         }, new VelocityTemplateEngine());
 
         Spark.get("/queryselector", (req, res) -> {
+            List<Game> ls = getGameStatORMLiteDao().queryForAll();
             Map<String, Object> model = new HashMap<String, Object>();
+            model.put("queryselector", ls);
             return new ModelAndView(model, "public/queryselector.vm");
         }, new VelocityTemplateEngine());
 
@@ -219,7 +221,10 @@ public class Main {
             obj.addProperty("value", value);
             // res.status(201);
             // res.type("application/json");
-            return obj;
+            List<Game> ls = getGameStatORMLiteDao().queryForAll();
+            Map<String, Object> model = new HashMap<String, Object>();
+            model.put("queryselector", ls);
+            return new ModelAndView(model, "public/results.vm");
         });
 
     }

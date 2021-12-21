@@ -1,0 +1,61 @@
+#set( $title = "Results of your query" )
+<body>
+    #if ($result) {
+    <h1>Results of your query:</h1>
+        #if ($type == "team") {
+        <div>
+            <ol>
+            <p>
+                #foreach($p in $result)
+                    <li>
+                        <i>$p.nickname</i>
+
+                    </li>
+                    <li>
+                        <i>$p.abbreviation</i>
+                    </li>
+                    <li>
+                        <i>$p.yearFounded</i>
+                    </li>
+                    <li>
+                        <i>$p.city</i>
+                    </li>
+                    <li>
+                        <i>$p.arena</i>
+                    </li>
+                #end
+                </p>
+
+            </ol>
+        </div>
+        }
+        #else {
+            <div>
+            <ol>
+            <p>
+                #foreach($p in $result)
+                    <li>
+                        <i>$p.playerName</i>
+
+                    </li>
+                    <li>
+                        <i>$p.playerID</i>
+                    </li>
+                    <li>
+                        <i>$p.team.nickname</i>
+                    </li>
+                    <li>
+                        <i>$p.team.teamID</i>
+                    </li>
+                    <li>
+                        <i>$p.season</i>
+                    </li>
+                #end
+                </p>
+
+            </ol>
+            </div>
+        #end
+    }
+    #end
+</body>
