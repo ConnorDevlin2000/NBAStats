@@ -66,11 +66,32 @@ public class Main {
 //                teamDao.create(t);
 //            }
 
-            Scanner s = new Scanner(new File("src/main/java/archive/players.csv"));
-            for(int i = 0; i < 5000; i++){
-                s.nextLine();
-            }
+//            Scanner s = new Scanner(new File("src/main/java/archive/players.csv"));
+//            for(int i = 0; i < 5000; i++){
+//                s.nextLine();
+//            }
+//            int counter = 1;
+//            while(s.hasNextLine()){
+//                System.out.println("Step: " + counter++);
+//                String line = s.nextLine();
+//                String[] toCreate = line.split(",");
+//                System.out.println(line);
+//                final String URI = "jdbc:sqlite:./JBApp.db";
+//                ConnectionSource connectionSource = new JdbcConnectionSource(URI);
+////                TableUtils.dropTable(connectionSource, Player.class, true);
+////                TableUtils.createTableIfNotExists(connectionSource, Player.class);
+//                Dao<Player,Integer> playerDao = DaoManager.createDao(connectionSource, Player.class);
+//                Team t = (Team) getTeamORMLiteDao().queryForEq("teamID", Integer.parseInt(toCreate[1])).get(0);
+//                Player p = new Player(toCreate[0], t, Integer.parseInt(toCreate[2]), Integer.parseInt(toCreate[3]));
+//                playerDao.createIfNotExists(p);
+//            }
+
+            Scanner s = new Scanner(new File("src/main/java/archive/games.csv"));
             int counter = 1;
+            for(int i = 0; i < 24000; i++){
+                s.nextLine();
+                counter++;
+            }
             while(s.hasNextLine()){
                 System.out.println("Step: " + counter++);
                 String line = s.nextLine();
@@ -80,10 +101,13 @@ public class Main {
                 ConnectionSource connectionSource = new JdbcConnectionSource(URI);
 //                TableUtils.dropTable(connectionSource, Player.class, true);
 //                TableUtils.createTableIfNotExists(connectionSource, Player.class);
-                Dao<Player,Integer> playerDao = DaoManager.createDao(connectionSource, Player.class);
-                Team t = (Team) getTeamORMLiteDao().queryForEq("teamID", Integer.parseInt(toCreate[1])).get(0);
-                Player p = new Player(toCreate[0], t, Integer.parseInt(toCreate[2]), Integer.parseInt(toCreate[3]));
-                playerDao.createIfNotExists(p);
+                Dao<Team,Integer> teamDao = DaoManager.createDao(connectionSource, Team.class);
+                Team t1 = (Team) getTeamORMLiteDao().queryForEq("teamID", Integer.parseInt(toCreate[3])).get(0);
+                Team t2 = (Team) getTeamORMLiteDao().queryForEq("teamID", Integer.parseInt(toCreate[4])).get(0);
+
+                Dao<Game,Integer> gameDao = DaoManager.createDao(connectionSource, Game.class);
+                Game g = new Game(Integer.parseInt(toCreate[1]), t1, t2, Integer.parseInt(toCreate[5]), (int) (Double.parseDouble(toCreate[7])), Double.parseDouble(toCreate[8]), Double.parseDouble(toCreate[9]), Double.parseDouble(toCreate[10]), (int) (Double.parseDouble(toCreate[11])), (int) (Double.parseDouble(toCreate[12])), (int) (Double.parseDouble(toCreate[14])), Double.parseDouble(toCreate[15]), Double.parseDouble(toCreate[16]), Double.parseDouble(toCreate[17]), (int) (Double.parseDouble(toCreate[18])), (int) (Double.parseDouble(toCreate[19])));
+                gameDao.createIfNotExists(g);
             }
         } catch (Exception e) {
             System.out.println("Working Directory = " + System.getProperty("user.dir"));
