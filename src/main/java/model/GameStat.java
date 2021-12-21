@@ -7,6 +7,8 @@ import java.util.Objects;
 
 @DatabaseTable(tableName = "gameStats")
 public class GameStat {
+    @DatabaseField(generatedId = true)
+    private int gameStatID;
     @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
     private Game game;
     @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)

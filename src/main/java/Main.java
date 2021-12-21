@@ -24,7 +24,7 @@ public class Main {
     private static Dao getGameORMLiteDao() throws SQLException {
         final String URI = "jdbc:sqlite:./JBApp.db";
         ConnectionSource connectionSource = new JdbcConnectionSource(URI);
-        TableUtils.createTableIfNotExists(connectionSource, Game.class);
+//        TableUtils.createTableIfNotExists(connectionSource, Game.class);
         return DaoManager.createDao(connectionSource, Game.class);
     }
 
@@ -38,7 +38,7 @@ public class Main {
     private static Dao getGameStatORMLiteDao() throws SQLException {
         final String URI = "jdbc:sqlite:./JBApp.db";
         ConnectionSource connectionSource = new JdbcConnectionSource(URI);
-        TableUtils.createTableIfNotExists(connectionSource, GameStat.class);
+//        TableUtils.createTableIfNotExists(connectionSource, GameStat.class);
         return DaoManager.createDao(connectionSource, GameStat.class);
     }
 
@@ -85,10 +85,12 @@ public class Main {
 //                Player p = new Player(toCreate[0], t, Integer.parseInt(toCreate[2]), Integer.parseInt(toCreate[3]));
 //                playerDao.createIfNotExists(p);
 //            }
-
-            Scanner s = new Scanner(new File("src/main/java/archive/games.csv"));
+            final String URI = "jdbc:sqlite:./JBApp.db";
+            ConnectionSource connectionSource = new JdbcConnectionSource(URI);
+            Scanner s = new Scanner(new File("src/main/java/archive/games_details.csv"));
+            s.nextLine();
             int counter = 1;
-            for(int i = 0; i < 24000; i++){
+            for(int i = 0; i < 58000; i++){
                 s.nextLine();
                 counter++;
             }
@@ -96,18 +98,21 @@ public class Main {
                 System.out.println("Step: " + counter++);
                 String line = s.nextLine();
                 String[] toCreate = line.split(",");
-                System.out.println(line);
-                final String URI = "jdbc:sqlite:./JBApp.db";
-                ConnectionSource connectionSource = new JdbcConnectionSource(URI);
+//                System.out.println(line);
 //                TableUtils.dropTable(connectionSource, Player.class, true);
 //                TableUtils.createTableIfNotExists(connectionSource, Player.class);
-                Dao<Team,Integer> teamDao = DaoManager.createDao(connectionSource, Team.class);
-                Team t1 = (Team) getTeamORMLiteDao().queryForEq("teamID", Integer.parseInt(toCreate[3])).get(0);
-                Team t2 = (Team) getTeamORMLiteDao().queryForEq("teamID", Integer.parseInt(toCreate[4])).get(0);
 
-                Dao<Game,Integer> gameDao = DaoManager.createDao(connectionSource, Game.class);
-                Game g = new Game(Integer.parseInt(toCreate[1]), t1, t2, Integer.parseInt(toCreate[5]), (int) (Double.parseDouble(toCreate[7])), Double.parseDouble(toCreate[8]), Double.parseDouble(toCreate[9]), Double.parseDouble(toCreate[10]), (int) (Double.parseDouble(toCreate[11])), (int) (Double.parseDouble(toCreate[12])), (int) (Double.parseDouble(toCreate[14])), Double.parseDouble(toCreate[15]), Double.parseDouble(toCreate[16]), Double.parseDouble(toCreate[17]), (int) (Double.parseDouble(toCreate[18])), (int) (Double.parseDouble(toCreate[19])));
-                gameDao.createIfNotExists(g);
+                ArrayList<Team> t = (ArrayList<Team>) getTeamORMLiteDao().queryForEq("teamID", Integer.parseInt(toCreate[1]));
+                ArrayList<Player> p = (ArrayList<Player>) getPlayerORMLiteDao().queryForEq("playerID", Integer.parseInt(toCreate[4]));
+                ArrayList<Game> g = (ArrayList<Game>) getGameORMLiteDao().queryForEq("gameID", Integer.parseInt(toCreate[0]));
+
+                Dao<GameStat,Integer> gameStatDao = DaoManager.createDao(connectionSource, GameStat.class);
+                if(toCreate[8].length() > 0 || t.isEmpty() || p.isEmpty() || g.isEmpty()){
+                    continue;
+                }
+
+                GameStat gs = new GameStat(g.get(0), t.get(0), p.get(0), (int) Double.parseDouble(toCreate[10]), (int) Double.parseDouble(toCreate[11]), Double.parseDouble(toCreate[12]), (int) Double.parseDouble(toCreate[13]), (int) Double.parseDouble(toCreate[14]), Double.parseDouble(toCreate[15]), (int) Double.parseDouble(toCreate[16]), (int) Double.parseDouble(toCreate[17]), Double.parseDouble(toCreate[18]), (int) Double.parseDouble(toCreate[19]), (int) Double.parseDouble(toCreate[20]), (int) Double.parseDouble(toCreate[21]), (int) Double.parseDouble(toCreate[22]), (int) Double.parseDouble(toCreate[23]), (int) Double.parseDouble(toCreate[24]), (int) Double.parseDouble(toCreate[25]), (int) Double.parseDouble(toCreate[26]), (int) Double.parseDouble(toCreate[27]));
+                gameStatDao.createIfNotExists(gs);
             }
         } catch (Exception e) {
             System.out.println("Working Directory = " + System.getProperty("user.dir"));
