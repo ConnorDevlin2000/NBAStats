@@ -20,7 +20,7 @@ public class Team {
     @DatabaseField
     private String arena;
 
-    public Team(){
+    public Team() {
 
     }
 
@@ -60,7 +60,7 @@ public class Team {
 
     @Override
     public String toString() {
-        return "Team ID: " + teamID;
+        return nickname;
     }
 
     @Override

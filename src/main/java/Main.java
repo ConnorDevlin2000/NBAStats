@@ -159,10 +159,8 @@ public class Main {
         // }
 
         Spark.get("/", (req, res) -> {
-            List<Game> ls = getGameORMLiteDao().queryForAll();
             Map<String, Object> model = new HashMap<String, Object>();
-            model.put("games", ls);
-            return new ModelAndView(model, "public/games.vm");
+            return new ModelAndView(model, "public/landing.vm");
         }, new VelocityTemplateEngine());
 
         Spark.get("/players", (req, res) -> {
@@ -170,6 +168,13 @@ public class Main {
             Map<String, Object> model = new HashMap<String, Object>();
             model.put("players", ls);
             return new ModelAndView(model, "public/players.vm");
+        }, new VelocityTemplateEngine());
+
+        Spark.get("/games", (req, res) -> {
+            List<Game> ls = getGameORMLiteDao().queryForAll();
+            Map<String, Object> model = new HashMap<String, Object>();
+            model.put("games", ls);
+            return new ModelAndView(model, "public/games.vm");
         }, new VelocityTemplateEngine());
 
         Spark.get("/teams", (req, res) -> {
@@ -180,9 +185,9 @@ public class Main {
         }, new VelocityTemplateEngine());
 
         Spark.get("/queryselector", (req, res) -> {
-            List<Game> ls = getGameStatORMLiteDao().queryForAll();
+            // List<Game> ls = getGameStatORMLiteDao().queryForAll();
             Map<String, Object> model = new HashMap<String, Object>();
-            model.put("queryselector", ls);
+            // model.put("queryselector", ls);
             return new ModelAndView(model, "public/queryselector.vm");
         }, new VelocityTemplateEngine());
 
@@ -208,6 +213,8 @@ public class Main {
                 }
                 PreparedQuery<GameStat> preparedQuery = query.prepare();
                 List<GameStat> result = gameStatDao.query(preparedQuery);
+                Map<String, Object> model = new HashMap<String, Object>();
+                model.put("players", result);
                 return result;
             } else if (select.equals("team")) {
                 // query += "Team.nickanme FROM GameStat JOIN Team ON GameStat";
@@ -215,16 +222,7 @@ public class Main {
             } else {
 
             }
-            obj.addProperty("select", select);
-            obj.addProperty("attributes", attributes);
-            obj.addProperty("operator", operator);
-            obj.addProperty("value", value);
-            // res.status(201);
-            // res.type("application/json");
-            List<Game> ls = getGameStatORMLiteDao().queryForAll();
-            Map<String, Object> model = new HashMap<String, Object>();
-            model.put("queryselector", ls);
-            return new ModelAndView(model, "public/results.vm");
+            return null;
         });
 
     }

@@ -1,4 +1,4 @@
-#set( $title = "Show players" )
+#set( $title = "Query Selector" )
 <style>
     @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
@@ -19,7 +19,6 @@
         align-items: stretch;
     }
     html { width: 100%; height:100%; overflow:hidden; }
-    li{color:white}
 
     body {
         width: 100%;
@@ -62,20 +61,88 @@
     }
     input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }
 </style>
-<body>
-    #if ($teams)
-    <h1 style="color:white">List of all Teams:</h1>
-    <div>
-        <ol>
-        <p>
-            #foreach($t in $teams)
-                <li>
-                    <h1> Team Name: $t.city $t.nickname
-                </li>
-            #end
-            </p>
 
-        </ol>
-    </div>
-    #end
+<body>
+<div class ="login">
+    <h1>Welcome to NBA Stats Selector!</h1>
+    <p style="color:white; text-align:center;">The future of statistical analysis.</p>
+    <form action = "/queryselector" method = "GET" class="form-inline" id = "form">
+        <button type="submit" class="btn btn-primary btn-block btn-large">Get Started</button>
+    </form>
+</div>
 </body>
+
+##<script>
+##  var currentForm = document.getElementById("form");
+##  var br = document.createElement("br");
+##
+##  function makeForm() {
+##    console.log("hello");
+##
+##    // Create a form synamically
+##
+##    // Create an input element for Full Name
+##    var FN = document.createElement("input");
+##    FN.setAttribute("type", "text");
+##    FN.setAttribute("name", "FullName");
+##    FN.setAttribute("placeholder", "Full Name");
+##
+##    // Create an input element for date of birth
+##    var DOB = document.createElement("input");
+##    DOB.setAttribute("type", "text");
+##    DOB.setAttribute("name", "dob");
+##    DOB.setAttribute("placeholder", "DOB");
+##
+##    // Create an input element for emailID
+##    var EID = document.createElement("input");
+##    EID.setAttribute("type", "text");
+##    EID.setAttribute("name", "emailID");
+##    EID.setAttribute("placeholder", "E-Mail ID");
+##
+##    // Create an input element for password
+##    var PWD = document.createElement("input");
+##    PWD.setAttribute("type", "password");
+##    PWD.setAttribute("name", "password");
+##    PWD.setAttribute("placeholder", "Password");
+##
+##    // Create an input element for retype-password
+##    var RPWD = document.createElement("input");
+##    RPWD.setAttribute("type", "password");
+##    RPWD.setAttribute("name", "reTypePassword");
+##    RPWD.setAttribute("placeholder", "ReEnter Password");
+##
+##    // create a submit button
+##    var s = document.createElement("input");
+##    s.setAttribute("type", "submit");
+##    s.setAttribute("value", "Submit");
+##
+##    // Append the full name input to the form
+##    currentForm.appendChild(FN);
+##
+##    // Inserting a line break
+##    currentForm.appendChild(br.cloneNode());
+##
+##    // Append the DOB to the form
+##    currentForm.appendChild(DOB);
+##    currentForm.appendChild(br.cloneNode());
+##
+##    // Append the emailID to the form
+##    currentForm.appendChild(EID);
+##    currentForm.appendChild(br.cloneNode());
+##
+##    // Append the Password to the form
+##    currentForm.appendChild(PWD);
+##    currentForm.appendChild(br.cloneNode());
+##
+##    // Append the ReEnterPassword to the form
+##    currentForm.appendChild(RPWD);
+##    currentForm.appendChild(br.cloneNode());
+##
+##    // Append the submit button to the form
+##    currentForm.appendChild(s);
+##
+##    // document.getElementsByTagName("body")[0]
+##    //     .appendChild(form);
+##  }
+##
+##</script>

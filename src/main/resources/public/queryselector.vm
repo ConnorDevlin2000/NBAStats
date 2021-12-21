@@ -64,6 +64,12 @@
 
 <body>
 <div class ="login">
+    <form action="/players" method="GET" class="form-inline" id="form">
+        <button type="submit" class="btn btn-primary btn-block btn-large" style="width:50%;">Show me all Players</button>
+    </form>
+    <form action="/teams" method="GET" class="form-inline" id="form">
+        <button type="submit" class="btn btn-primary btn-block btn-large" style="width:50%;">Show me all Teams</button>
+    </form>
     <h1>Ask Away</h1>
     <form action = "/queryselector" method = "POST" class="form-inline" id = "form">
         <label for="select"  style="color:white;">Show me </label>
