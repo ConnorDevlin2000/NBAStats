@@ -1,0 +1,132 @@
+#set( $title = "Query Selector" )
+<style>
+    .form-inline input {
+        margin: 10px 0;
+    }
+    .form-inline {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .center {
+        margin: auto;
+        width: 60%;
+        border: 1px solid black;
+        padding: 10px;
+    }
+    select {
+        padding: 5px;
+    }
+
+    .add {
+        border: 1px dotted black;
+    }
+</style>
+
+<body>
+<h1 style = "text-align: center;">Welcome to the Query Selector</h1>
+<div class ="center">
+    <form action = "/queryselector" method = "POST" class="form-inline" id = "form">
+        <label for="select">Select:</label>
+        <select name="field1" id="field1">
+            <option value="player">Player</option>
+            <option value="team">Team</option>
+            <option value="season">Season</option>
+        </select>
+        <label for="pwd">Where:</label>
+        <select name="attributes" id="cars">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="audi">Audi</option>
+        </select>
+        <label for="pwd">Relational Operators</label>
+        <select name="operator" id="operator">
+            <option value=">">></option>
+            <option value="<"><</option>
+            <option value=">=">>=</option>
+            <option value="<="><=</option>
+            <option value="=">=</option>
+        </select>
+        <label for="pwd">Value:</label>
+        <input type="text" id="value" placeholder="Number/Text" name="value">
+        <button class = "add" >Add field</button>
+        <button type="submit" >Submit</button>
+    </form>
+</div>
+</body>
+
+##<script>
+##  var currentForm = document.getElementById("form");
+##  var br = document.createElement("br");
+##
+##  function makeForm() {
+##    console.log("hello");
+##
+##    // Create a form synamically
+##
+##    // Create an input element for Full Name
+##    var FN = document.createElement("input");
+##    FN.setAttribute("type", "text");
+##    FN.setAttribute("name", "FullName");
+##    FN.setAttribute("placeholder", "Full Name");
+##
+##    // Create an input element for date of birth
+##    var DOB = document.createElement("input");
+##    DOB.setAttribute("type", "text");
+##    DOB.setAttribute("name", "dob");
+##    DOB.setAttribute("placeholder", "DOB");
+##
+##    // Create an input element for emailID
+##    var EID = document.createElement("input");
+##    EID.setAttribute("type", "text");
+##    EID.setAttribute("name", "emailID");
+##    EID.setAttribute("placeholder", "E-Mail ID");
+##
+##    // Create an input element for password
+##    var PWD = document.createElement("input");
+##    PWD.setAttribute("type", "password");
+##    PWD.setAttribute("name", "password");
+##    PWD.setAttribute("placeholder", "Password");
+##
+##    // Create an input element for retype-password
+##    var RPWD = document.createElement("input");
+##    RPWD.setAttribute("type", "password");
+##    RPWD.setAttribute("name", "reTypePassword");
+##    RPWD.setAttribute("placeholder", "ReEnter Password");
+##
+##    // create a submit button
+##    var s = document.createElement("input");
+##    s.setAttribute("type", "submit");
+##    s.setAttribute("value", "Submit");
+##
+##    // Append the full name input to the form
+##    currentForm.appendChild(FN);
+##
+##    // Inserting a line break
+##    currentForm.appendChild(br.cloneNode());
+##
+##    // Append the DOB to the form
+##    currentForm.appendChild(DOB);
+##    currentForm.appendChild(br.cloneNode());
+##
+##    // Append the emailID to the form
+##    currentForm.appendChild(EID);
+##    currentForm.appendChild(br.cloneNode());
+##
+##    // Append the Password to the form
+##    currentForm.appendChild(PWD);
+##    currentForm.appendChild(br.cloneNode());
+##
+##    // Append the ReEnterPassword to the form
+##    currentForm.appendChild(RPWD);
+##    currentForm.appendChild(br.cloneNode());
+##
+##    // Append the submit button to the form
+##    currentForm.appendChild(s);
+##
+##    // document.getElementsByTagName("body")[0]
+##    //     .appendChild(form);
+##  }
+##
+##</script>
