@@ -183,6 +183,11 @@ public class Main {
             return new ModelAndView(model, "public/queryselector.vm");
         }, new VelocityTemplateEngine());
 
+        Spark.get("/queryselectorTeam", (req, res) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            return new ModelAndView(model, "public/queryselectorTeam.vm");
+        }, new VelocityTemplateEngine());
+
         Spark.post("/queryselector", (req, res) -> {
             String select = req.queryParams("field1");
             String attributes = req.queryParams("attributes");
@@ -191,32 +196,37 @@ public class Main {
 
             Dao<GameStat, Integer> gameStatDao = getGameStatORMLiteDao();
             QueryBuilder<GameStat, Integer> query = gameStatDao.queryBuilder();
-            if (select.equals("player")) {
-                if (operator.equals(">")) {
-                    query.distinct().selectColumns("player_id").where().gt(attributes, Integer.parseInt(value));
-                } else if (operator.equals(">=")) {
-                    query.distinct().selectColumns("player_id").where().ge(attributes, Integer.parseInt(value));
-                } else if (operator.equals("<")) {
-                    query.distinct().selectColumns("player_id").where().lt(attributes, Integer.parseInt(value));
-                } else if (operator.equals("<=")) {
-                    query.distinct().selectColumns("player_id").where().le(attributes, Integer.parseInt(value));
-                } else {
-                    query.distinct().selectColumns("player_id").where().eq(attributes, Integer.parseInt(value));
-                }
-            } else if (select.equals("team")) {
-                Dao<Game, Integer> gameDao = getGameORMLiteDao();
-                QueryBuilder<Game, Integer> query2 = gameDao.queryBuilder();
-                query2.groupBy("homeTeam_id").having("AVG(" + attributes.replaceAll("_", "") + "home" + ") " + operator + value);
-                PreparedQuery<Game> preparedQuery2 = query2.prepare();
-                List<Game> result2 = gameDao.query(preparedQuery2);
-                return result2;
+            if (operator.equals(">")) {
+                query.distinct().selectColumns("player_id").where().gt(attributes, Integer.parseInt(value));
+            } else if (operator.equals(">=")) {
+                query.distinct().selectColumns("player_id").where().ge(attributes, Integer.parseInt(value));
+            } else if (operator.equals("<")) {
+                query.distinct().selectColumns("player_id").where().lt(attributes, Integer.parseInt(value));
+            } else if (operator.equals("<=")) {
+                query.distinct().selectColumns("player_id").where().le(attributes, Integer.parseInt(value));
             } else {
-
+                query.distinct().selectColumns("player_id").where().eq(attributes, Integer.parseInt(value));
             }
-
             PreparedQuery<GameStat> preparedQuery = query.prepare();
             List<GameStat> result = gameStatDao.query(preparedQuery);
             return result;
+        });
+
+        Spark.post("/queryselectorTeam", (req, res) -> {
+            String select = req.queryParams("field1");
+            String attributes = req.queryParams("attributes");
+            String operator = req.queryParams("operator");
+            String value = String.valueOf(req.queryParams("value"));
+
+            Dao<GameStat, Integer> gameStatDao = getGameStatORMLiteDao();
+            QueryBuilder<GameStat, Integer> query = gameStatDao.queryBuilder();
+            Dao<Game, Integer> gameDao = getGameORMLiteDao();
+            QueryBuilder<Game, Integer> query2 = gameDao.queryBuilder();
+            query2.groupBy("homeTeam_id")
+                    .having("AVG(" + attributes.replaceAll("_", "") + "home" + ") " + operator + value);
+            PreparedQuery<Game> preparedQuery2 = query2.prepare();
+            List<Game> result2 = gameDao.query(preparedQuery2);
+            return result2;
         });
 
     }

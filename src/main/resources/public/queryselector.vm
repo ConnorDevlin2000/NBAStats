@@ -70,13 +70,11 @@
     <form action="/teams" method="GET" class="form-inline" id="form">
         <button type="submit" class="btn btn-primary btn-block btn-large" style="width:50%;">Show me all Teams</button>
     </form>
-    <h1>Ask Away</h1>
+    <h1>Ask Away(Player Data)</h1>
     <form action = "/queryselector" method = "POST" class="form-inline" id = "form">
         <label for="select"  style="color:white;">Show me </label>
         <select name="field1" id="field1">
             <option value="player">Players</option>
-            <option value="team">Teams</option>
-            <option value="season">Seasons</option>
         </select>
         <label for="pwd" style="color:white;"> where </label>
         <select name="attributes" id="select">
@@ -108,6 +106,9 @@
         </select>
         <input type="text" id="value" placeholder="Value" name="value">
         <button type="submit" class="btn btn-primary btn-block btn-large">Let's See It!</button>
+    </form>
+    <form action="/queryselectorTeam" method="GET" class="form-inline" id="form">
+        <button type="submit" class="btn btn-primary btn-block btn-large" style="width:100%;">Search Team Data</button>
     </form>
 </div>
 </body>

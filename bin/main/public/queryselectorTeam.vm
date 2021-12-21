@@ -70,32 +70,20 @@
     <form action="/teams" method="GET" class="form-inline" id="form">
         <button type="submit" class="btn btn-primary btn-block btn-large" style="width:50%;">Show me all Teams</button>
     </form>
-    <h1>Ask Away(Player Data)</h1>
-    <form action = "/queryselector" method = "POST" class="form-inline" id = "form">
+    <h1>Ask Away(Team Data)</h1>
+    <form action = "/queryselectorTeam" method = "POST" class="form-inline" id = "form">
         <label for="select"  style="color:white;">Show me </label>
         <select name="field1" id="field1">
-            <option value="player">Players</option>
+            <option value="team">Teams</option>
         </select>
         <label for="pwd" style="color:white;"> where </label>
         <select name="attributes" id="select">
-            <option value="fgm">Field Goals Made</option>
-            <option value="fga">Field Goals Attempted</option>
             <option value="fg_pct">Field Goal Percentage</option>
-            <option value="fg3m">3pt Made</option>
-            <option value="fg3a">3pt Attempted</option>
             <option value="fg3_pct">3pt Percentage</option>
-            <option value="ftm">Free Throws Made</option>
-            <option value="fta">Free Throws Attempted</option>
             <option value="ft_pct">Free Throw Percentage</option>
-            <option value="oreb">Offensive Rebounds</option>
-            <option value="dreb">Defensive Rebounds</option>
             <option value="reb">Rebounds</option>
             <option value="ast">Assists</option>
-            <option value="stl">Steals</option>
-            <option value="blk">Blocks</option>
-            <option value="pf">Fouls</option>
             <option value="pts">Points</option>
-            <option value="plusminus">Plus Minus</option>
         </select>
         <select name="operator" id="operator">
             <option value=">">></option>
@@ -107,8 +95,8 @@
         <input type="text" id="value" placeholder="Value" name="value">
         <button type="submit" class="btn btn-primary btn-block btn-large">Let's See It!</button>
     </form>
-    <form action="/queryselectorTeam" method="GET" class="form-inline" id="form">
-        <button type="submit" class="btn btn-primary btn-block btn-large" style="width:100%;">Search Team Data</button>
+    <form action="/queryselector" method="GET" class="form-inline" id="form">
+        <button type="submit" class="btn btn-primary btn-block btn-large" style="width:100%;">Search Player Data</button>
     </form>
 </div>
 </body>
