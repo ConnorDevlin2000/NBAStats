@@ -8,7 +8,19 @@
             #foreach($p in $players)
                 <li>
                     <i>$p.playerName</i>
+
+                </li>
+                <li>
+                    <i>$p.playerID</i>
+                </li>
+                <li>
                     <i>$p.team.nickname</i>
+                </li>
+                <li>
+                    <i>$p.team.teamID</i>
+                </li>
+                <li>
+                    <i>$p.season</i>
                 </li>
             #end
             </p>

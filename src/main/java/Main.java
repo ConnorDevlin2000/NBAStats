@@ -31,7 +31,7 @@ public class Main {
     private static Dao getPlayerORMLiteDao() throws SQLException {
         final String URI = "jdbc:sqlite:./JBApp.db";
         ConnectionSource connectionSource = new JdbcConnectionSource(URI);
-        TableUtils.createTableIfNotExists(connectionSource, Player.class);
+//        TableUtils.createTableIfNotExists(connectionSource, Player.class);
         return DaoManager.createDao(connectionSource, Player.class);
     }
 
@@ -45,7 +45,7 @@ public class Main {
     private static Dao getTeamORMLiteDao() throws SQLException {
         final String URI = "jdbc:sqlite:./JBApp.db";
         ConnectionSource connectionSource = new JdbcConnectionSource(URI);
-        TableUtils.createTableIfNotExists(connectionSource, Team.class);
+//        TableUtils.createTableIfNotExists(connectionSource, Team.class);
         return DaoManager.createDao(connectionSource, Team.class);
     }
 
@@ -55,22 +55,41 @@ public class Main {
         Spark.port(PORT_NUM);
 
         try{
-            Scanner s = new Scanner(new File("src/main/java/archive/teams.csv"));
+//            Scanner s = new Scanner(new File("src/main/java/archive/teams.csv"));
+//            while(s.hasNextLine()){
+//                String line = s.nextLine();
+//                String[] toCreate = line.split(",");
+//                final String URI = "jdbc:sqlite:./JBApp.db";
+//                ConnectionSource connectionSource = new JdbcConnectionSource(URI);
+//                Dao<Team,Integer> teamDao = DaoManager.createDao(connectionSource, Team.class);
+//                Team t = new Team(Integer.parseInt(toCreate[1]), toCreate[4], toCreate[5], Integer.parseInt(toCreate[6]), toCreate[7], toCreate[8]);
+//                teamDao.create(t);
+//            }
+
+            Scanner s = new Scanner(new File("src/main/java/archive/players.csv"));
+            for(int i = 0; i < 5000; i++){
+                s.nextLine();
+            }
+            int counter = 1;
             while(s.hasNextLine()){
+                System.out.println("Step: " + counter++);
                 String line = s.nextLine();
                 String[] toCreate = line.split(",");
+                System.out.println(line);
                 final String URI = "jdbc:sqlite:./JBApp.db";
                 ConnectionSource connectionSource = new JdbcConnectionSource(URI);
-                Dao<Team,Integer> teamDao = DaoManager.createDao(connectionSource, Team.class);
-                Team t = new Team(Integer.parseInt(toCreate[1]), toCreate[4], toCreate[5], Integer.parseInt(toCreate[6]), toCreate[7], toCreate[8]);
-                teamDao.create(t);
+//                TableUtils.dropTable(connectionSource, Player.class, true);
+//                TableUtils.createTableIfNotExists(connectionSource, Player.class);
+                Dao<Player,Integer> playerDao = DaoManager.createDao(connectionSource, Player.class);
+                Team t = (Team) getTeamORMLiteDao().queryForEq("teamID", Integer.parseInt(toCreate[1])).get(0);
+                Player p = new Player(toCreate[0], t, Integer.parseInt(toCreate[2]), Integer.parseInt(toCreate[3]));
+                playerDao.createIfNotExists(p);
             }
         } catch (Exception e) {
             System.out.println("Working Directory = " + System.getProperty("user.dir"));
             System.err.println("You're fucked!");
+            System.err.println(e.toString());
         }
-
-
 
         Spark.get("/", (req, res) -> {
             List<Game> ls = getGameORMLiteDao().queryForAll();
